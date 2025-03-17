@@ -1,28 +1,29 @@
-﻿# Definir la matriz 3D de temperaturas
-ciudades = ["Ciudad 1", "Ciudad 2", "Ciudad 3"]
-temperaturas = [
-    [   # Ciudad 1
-        [78, 80, 82, 79, 85, 88, 92],  # Semana 1
-        [76, 79, 83, 81, 87, 89, 93],  # Semana 2
-        [77, 81, 85, 82, 88, 91, 95],  # Semana 3
-        [75, 78, 80, 79, 84, 87, 91]   # Semana 4
-    ],
-    [   # Ciudad 2
-        [62, 64, 68, 70, 73, 75, 79],  # Semana 1
-        [63, 66, 70, 72, 75, 77, 81],  # Semana 2
-        [61, 65, 68, 70, 72, 76, 80],  # Semana 3
-        [64, 67, 69, 71, 74, 77, 80]   # Semana 4
-    ],
-    [   # Ciudad 3
-        [90, 92, 94, 91, 88, 85, 82],  # Semana 1
-        [89, 91, 93, 90, 87, 84, 81],  # Semana 2
-        [91, 93, 95, 92, 89, 86, 83],  # Semana 3
-        [88, 90, 92, 89, 86, 83, 80]   # Semana 4
-    ]
-]
+﻿def promedio_temperatura(ciudades_temperaturas):
+    # Implemento un diccionario vacío para guardar las medias de temperatura.
+    promedio_temperatura = {}
 
-# Calcular y mostrar el promedio de temperaturas por ciudad y semana
-for ciudad_idx, ciudad in enumerate(temperaturas):
-    for semana_idx, semana in enumerate(ciudad):
-        promedio = sum(semana) / len(semana)
-        print(f"Promedio de temperaturas en {ciudades[ciudad_idx]}, Semana {semana_idx + 1}: {promedio:.2f} grados")
+    # Hago una iteración sobre cada ciudad y su lista de temperaturas en el diccionario de entrada
+    for ciudad, temperaturas in ciudades_temperaturas.items():
+        # Cálculo del promedio
+        promedio = sum(temperaturas) / len(temperaturas)
+        # Guardo el promedio calculado en el diccionario de resultados
+        promedio_temperatura[ciudad] = promedio
+
+    # Devuelvo el diccionario que contiene los promedios de temperatura por ciudad
+    return promedio_temperatura
+
+# Hago un diccionario de ciudades y temperaturas
+ciudades_temperaturas = {
+    "Loja": [30, 31, 30, 27, 29, 29, 30, 29, 29, 30, 29, 30, 28, 29],
+    "Manabi": [24, 23, 24, 23, 24, 25, 25, 22, 21, 22, 21, 21, 20, 22],
+    "Riobamba": [18, 18, 17, 16, 18, 19, 20, 21, 18, 18, 16, 16, 17, 19],
+    "Tulcan": [34, 34, 31, 31, 32, 31, 32, 31, 31, 34, 33, 33, 33, 32],
+}
+
+# Llamo a la función con el diccionario de ciudades y temperaturas
+promedio_temperatura = promedio_temperatura(ciudades_temperaturas)
+
+# Imprimo los resultados
+print("Las temperaturas promedio por ciudad son:")
+for ciudad, promedio in promedio_temperatura.items():
+    print(f"{ciudad}: {promedio:.2f}°C")
